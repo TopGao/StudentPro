@@ -37,10 +37,10 @@ public class MD5Code {
 
     static final int S44 = 21;
 
-    static final byte[] PADDING = { -128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    static final byte[] PADDING = {-128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0 };
+            0, 0, 0, 0, 0, 0, 0};
 
     /*
      * 下面的三个成员是MD5计算过程中用到的3个核心数据，在原始的C实现中 被定义到MD5_CTX结构中
@@ -53,9 +53,9 @@ public class MD5Code {
 
     private byte[] buffer = new byte[64]; // input buffer
 
-	/*
-	 * digestHexStr是MD5的唯一一个公共成员，是最新一次计算结果的 16进制ASCII表示.
-	 */
+    /*
+     * digestHexStr是MD5的唯一一个公共成员，是最新一次计算结果的 16进制ASCII表示.
+     */
 
     public String digestHexStr;
 
@@ -214,7 +214,7 @@ public class MD5Code {
         long a = state[0], b = state[1], c = state[2], d = state[3];
         long[] x = new long[16];
         Decode(x, block, 64);
-		/* Round 1 */
+        /* Round 1 */
         a = FF(a, b, c, d, x[0], S11, 0xd76aa478L); /* 1 */
         d = FF(d, a, b, c, x[1], S12, 0xe8c7b756L); /* 2 */
         c = FF(c, d, a, b, x[2], S13, 0x242070dbL); /* 3 */
@@ -231,7 +231,7 @@ public class MD5Code {
         d = FF(d, a, b, c, x[13], S12, 0xfd987193L); /* 14 */
         c = FF(c, d, a, b, x[14], S13, 0xa679438eL); /* 15 */
         b = FF(b, c, d, a, x[15], S14, 0x49b40821L); /* 16 */
-		/* Round 2 */
+        /* Round 2 */
         a = GG(a, b, c, d, x[1], S21, 0xf61e2562L); /* 17 */
         d = GG(d, a, b, c, x[6], S22, 0xc040b340L); /* 18 */
         c = GG(c, d, a, b, x[11], S23, 0x265e5a51L); /* 19 */
@@ -248,7 +248,7 @@ public class MD5Code {
         d = GG(d, a, b, c, x[2], S22, 0xfcefa3f8L); /* 30 */
         c = GG(c, d, a, b, x[7], S23, 0x676f02d9L); /* 31 */
         b = GG(b, c, d, a, x[12], S24, 0x8d2a4c8aL); /* 32 */
-		/* Round 3 */
+        /* Round 3 */
         a = HH(a, b, c, d, x[5], S31, 0xfffa3942L); /* 33 */
         d = HH(d, a, b, c, x[8], S32, 0x8771f681L); /* 34 */
         c = HH(c, d, a, b, x[11], S33, 0x6d9d6122L); /* 35 */
@@ -265,7 +265,7 @@ public class MD5Code {
         d = HH(d, a, b, c, x[12], S32, 0xe6db99e5L); /* 46 */
         c = HH(c, d, a, b, x[15], S33, 0x1fa27cf8L); /* 47 */
         b = HH(b, c, d, a, x[2], S34, 0xc4ac5665L); /* 48 */
-		/* Round 4 */
+        /* Round 4 */
         a = II(a, b, c, d, x[0], S41, 0xf4292244L); /* 49 */
         d = II(d, a, b, c, x[7], S42, 0x432aff97L); /* 50 */
         c = II(c, d, a, b, x[14], S43, 0xab9423a7L); /* 51 */
@@ -325,8 +325,8 @@ public class MD5Code {
      * 因为java中的byte的toString无法实现这一点，我们又没有C语言中的 sprintf(outbuf,"%02X",ib)
      */
     public static String byteHEX(byte ib) {
-        char[] Digit = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A',
-                'B', 'C', 'D', 'E', 'F' };
+        char[] Digit = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A',
+                'B', 'C', 'D', 'E', 'F'};
         char[] ob = new char[2];
         ob[0] = Digit[(ib >>> 4) & 0X0F];
         ob[1] = Digit[ib & 0X0F];

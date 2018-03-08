@@ -10,7 +10,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
             + request.getServerName() + ":" + request.getServerPort()
-            + path +"/";
+            + path + "/";
 %>
 
 <html lang="zh">
@@ -33,13 +33,14 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">学生管理系统</h3>
+                    <h3 class="panel-title">学生管理系统afasfasf</h3>
                 </div>
                 <div class="panel-body">
                     <form role="form" action="<%=basePath%>pages/back/admin_login.action" method="post" id="loginForm">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus value="ylcto@163.com" autofocus>
+                                <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus
+                                       value="ylcto@163.com" autofocus>
                             </div>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Password" name="password" type="password"

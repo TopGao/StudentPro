@@ -19,23 +19,22 @@ public class AdminLoginAction extends DefaultAction {
     @Resource
     private IAdminService adminService;
     @Autowired
-    private HttpServletRequest request ;
+    private HttpServletRequest request;
 
     @RequestMapping(value = "admin_login")
-    public ModelAndView login(Admin admin){
+    public ModelAndView login(Admin admin) {
         System.out.println("进入 login 方法！");
         ModelAndView mav = new ModelAndView(super.getResource("pages.forward"));
-        System.out.println("过卡！");
         try {
             // 实现登录密码加盐操作
-            admin.setPassword(new MD5Code().getMD5ofStr(admin.getPassword()+admin.getEmail()));
+            admin.setPassword(new MD5Code().getMD5ofStr(admin.getPassword() + admin.getEmail()));
             Admin vo = this.adminService.login(admin); // 登录成功后还要取得最后一次登录日期
-            if (vo != null){
-                super.setMsgAndPath(mav,"admin.insert.success","admin.login.success");
-                request.getSession().setAttribute("email",vo.getEmail());
-                request.getSession().setAttribute("lastdate",new SimpleDateFormat("yyyy-MM-dd").format(vo.getLastdate())); // 取得最后一次登录日期操作
-            }else{
-                super.setMsgAndPath(mav,"admin.insert.failure","admin.login.failured");
+            if (vo != null) {
+                super.setMsgAndPath(mav, "admin.insert.success", "admin.login.success");
+                request.getSession().setAttribute("email", vo.getEmail());
+                request.getSession().setAttribute("lastdate", new SimpleDateFormat("yyyy-MM-dd").format(vo.getLastdate())); // 取得最后一次登录日期操作
+            } else {
+                super.setMsgAndPath(mav, "admin.insert.failure", "admin.login.failured");
             }
         } catch (Exception e) {
             e.printStackTrace();

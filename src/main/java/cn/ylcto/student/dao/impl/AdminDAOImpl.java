@@ -10,15 +10,17 @@ import org.springframework.stereotype.Repository;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
+
 @Repository
 public class AdminDAOImpl extends SqlSessionDaoSupport implements IAdminDAO {
     @Autowired
-    public AdminDAOImpl(SqlSessionFactory sqlSessionFactory){
+    public AdminDAOImpl(SqlSessionFactory sqlSessionFactory) {
         super.setSqlSessionFactory(sqlSessionFactory);
     }
+
     @Override
     public Admin findLogin(Admin vo) throws SQLException {
-        return super.getSqlSession().selectOne("AdminNS.findLogin",vo);
+        return super.getSqlSession().selectOne("AdminNS.findLogin", vo);
     }
 
     @Override
@@ -28,7 +30,7 @@ public class AdminDAOImpl extends SqlSessionDaoSupport implements IAdminDAO {
 
     @Override
     public boolean doUpdate(Admin vo) throws SQLException {
-       return super.getSqlSession().update("AdminNS.doUpdateLastDate",vo) > 0;
+        return super.getSqlSession().update("AdminNS.doUpdateLastDate", vo) > 0;
         //return false;
     }
 
